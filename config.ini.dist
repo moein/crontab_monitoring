@@ -1,0 +1,10 @@
+check_interval = 0
+crontab_files[] = crontab.test
+crontab_users[] = makbarof
+crontab_users[] = root
+crontab_runner = /bin/sh -c
+ignore_strings[] = monitor.php
+database[user] = user
+database[pass] = pass
+database[name] = crontab
+database[host] = 127.0.0.1

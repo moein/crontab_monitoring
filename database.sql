@@ -1,0 +1,10 @@
+CREATE TABLE `crontab` (
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `command` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pid` INT UNSIGNED NOT NULL,
+  `started_at` DATETIME NOT NULL,
+  `finished_at` DATETIME DEFAULT NULL,
+  `hash` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `hash` (`hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
