@@ -9,7 +9,8 @@ It's pretty simple.
  - Download the project.
  - Copy config.ini.dist to config.ini
  - Update the config.ini file
- 
+ - Run update_commands.php to save the commands
+ - Run monitor.php to track the execution time
 ## Explain the config names!
 
 ### check_interval
