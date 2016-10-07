@@ -1,10 +1,11 @@
 check_interval = 0
-crontab_files[] = crontab.test
-crontab_users[] = makbarof
-crontab_users[] = root
+ssh_path = /usr/bin/ssh
 crontab_runner = /bin/sh -c
 ignore_strings[] = monitor.php
-database[user] = user
+
+servers[] = root@mydomain.comroot,myuser,/etc/crontab
+
+database[user] = root
 database[pass] = pass
 database[name] = crontab
 database[host] = 127.0.0.1

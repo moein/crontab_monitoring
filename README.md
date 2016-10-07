@@ -22,11 +22,8 @@ When not 0 it's better to be used as a service so in case it dies the system tak
 Take in account based on how often you run the script or the value of check_interval the timing can be less or more precise.
 This script is mainly for commands that take more than 10 seconds and not short commands.
 
-### crontab_files
-Here you specify the path of all the files than contain your cronjobs.
-
-### crontab_users
-All the users that you use to run the cronjobs.
+### ssh_path
+The path to ssh binary file. You can find it using which ssh
 
 ### crontab_runner
 This is the command used by crontab to run a cronjob. Generally the default value should work fine but to make sure
@@ -37,3 +34,12 @@ In debian or macos case it shows `/bin/sh -c sleep 10`
 
 ### ignore_strings
 A list of strings that if a cronjob contains it will be ignored. By default only monitor.php is added to avoid monitoring the script itself.
+
+### servers
+The monitoring system checks the crontabs in multiple servers. The values of this field should be the following way.
+user@server_ip:user1,file1,user2,file2
+
+If a user is passed crontab -u user -l is used and if a file path is passed the cat file is used.
+
+### database
+This is where the stats and commands are kept.

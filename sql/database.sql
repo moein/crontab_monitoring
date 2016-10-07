@@ -1,6 +1,8 @@
 CREATE TABLE `command` (
   `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `command` VARCHAR(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `server` VARCHAR(50) NOT NULL,
+  `user` VARCHAR(20) NOT NULL,
   `hash` VARCHAR(32) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `hash` (`hash`)
