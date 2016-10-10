@@ -2,6 +2,7 @@ check_interval = 0
 ssh_path = /usr/bin/ssh
 crontab_runner = /bin/sh -c
 ignore_strings[] = monitor.php
+list_processes_command = ps aux
 
 servers[] = root@mydomain.comroot,myuser,/etc/crontab
 

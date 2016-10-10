@@ -28,8 +28,10 @@ function monitor($config, \PDO $pdo) {
         $serverSsh = $serverParts[0];
         $users = explode(',', $serverParts[1]);
 
+        $listProcessesCommand = $config['list_processes_command'];
+
         $commands = get_commands($pdo, $serverSsh);
-        $output = shell_exec(sprintf('%s %s \'ps aux | grep "%s"\'',$config['ssh_path'], $serverSsh, $config['crontab_runner']));
+        $output = shell_exec(sprintf('%s %s \'%s | grep "%s"\'',$config['ssh_path'], $serverSsh, $listProcessesCommand, $config['crontab_runner']));
         foreach (explode("\n", $output) as $process) {
             $processParts = explode($config['crontab_runner'].' ', $process);
             if (count($processParts) != 2) {
