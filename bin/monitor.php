@@ -69,10 +69,16 @@ function monitor($config, \PDO $pdo) {
         }
 
         $sth = $pdo->prepare(sprintf(
-            'UPDATE command_stats SET finished_at = :time WHERE hash NOT IN (%s) AND finished_at IS NULL',
+            'UPDATE command_stats SET finished_at = :time, duration = timestampdiff(SECOND,started_at,finished_at) WHERE hash NOT IN (%s) AND finished_at IS NULL',
             implode(',', array_map(function($hash) {return "'$hash'";}, $runningCommandsHashes))
         ));
         $sth->execute([':time' => $currentTime]);
+
+        $sth = $pdo->prepare('UPDATE command_stats SET duration = timestampdiff(SECOND,started_at,NOW()) WHERE finished_at IS NULL');
+        $sth->execute();
+
+        $sth = $pdo->prepare('UPDATE command c JOIN command_stats cs ON cs.command_id = c.id AND finished_at IS NULL SET c.last_pid = cs.pid, c.last_duration = cs.duration');
+        $sth->execute();
     }
 }
 
